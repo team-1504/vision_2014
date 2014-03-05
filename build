@@ -1,0 +1,3 @@
+cmake .
+make
+cp CMakeFiles/NetworkTablesModule.dir/NetworkTablesModule.class NetworkTablesModule.class
