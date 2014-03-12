@@ -1,3 +1,5 @@
+javac -classpath /home/gavaga/sunspotfrcsdk/desktop-lib/networktables-desktop.jar NetworkTablesModule.java
+javah -jni NetworkTablesModule
 cmake .
 make
-cp CMakeFiles/NetworkTablesModule.dir/NetworkTablesModule.class NetworkTablesModule.class
+#cp CMakeFiles/NetworkTablesModule.dir/NetworkTablesModule.class NetworkTablesModule.class
