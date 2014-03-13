@@ -88,7 +88,7 @@ public class NetworkTablesModule
 			}
 		}
 
-		mode = (int)robot_table.getNumber("game_mode", 1.0);
+		mode = (int)robot_table.getNumber("game_mode", 2.0);
 		System.out.println("mode: " + mode);
 		dx = robot_table.getNumber("robot_dx", 150.0);
 		dy = robot_table.getNumber("robot_dy", 0);

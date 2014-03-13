@@ -157,13 +157,13 @@ vector<vision_target_observation> find_vision_targets(const Mat& frame, Mat& fra
     }
     target_rects.shrink_to_fit();
     
-    vector<vision_target_observation> targets(target_rects.size());
+    vector<vision_target_observation> targets;
     for (int i = 0; i < target_rects.size(); ++i)
     {
         double aspect = ((double)((RotatedRect)target_rects[i]).size.width) / ((double)((RotatedRect)target_rects[i]).size.height);
         bool is_static = abs(aspect - STATIC_TARGET_ASPECT) < ASPECT_TOLERANCE;
         bool is_dynamic = abs(aspect - DYNAMIC_TARGET_ASPECT) < ASPECT_TOLERANCE;
-        if (is_static || is_dynamic && ((RotatedRect)target_rects[i]).center.x > 5 && ((RotatedRect)target_rects[i]).center.y > 5 )
+        if (is_static || is_dynamic && ((RotatedRect)target_rects[i]).size.width * ((RotatedRect)target_rects[i]).size.height > (RESOLUTION_X * RESOLUTION_Y)/100.0 && ((RotatedRect)target_rects[i]).center.x > RESOLUTION_X/50.0 && ((RotatedRect)target_rects[i]).center.y > RESOLUTION_Y/50.0)
         {
             vision_target_observation back = {};
             back.x = ((RotatedRect)target_rects[i]).center.x;
@@ -172,13 +172,15 @@ vector<vision_target_observation> find_vision_targets(const Mat& frame, Mat& fra
             back.width = ((RotatedRect)target_rects[i]).size.width;
             back.index = i;
             back.type = is_static? 0: 1;
-            targets[i] = back;
+            targets.push_back(back);
         }
         else
         {
             continue;
         }               
     }
+    targets.shrink_to_fit();
+    cout << targets.size() << endl;
     
     for (int i = 0; i < targets.size(); ++i)
     {

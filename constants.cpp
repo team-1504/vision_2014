@@ -33,7 +33,7 @@ const int HUE_WIDTH_VISION_TARGET_2 = 30;
 
 const double STATIC_TARGET_ASPECT = 0.125;
 const double DYNAMIC_TARGET_ASPECT = 0.5;
-const double ASPECT_TOLERANCE = 0.05;
+const double ASPECT_TOLERANCE = 0.1;
 
 const double AREA_DIFFERENTIAL = 0.3;
 const double AREA_TOLERANCE = 0.15;
